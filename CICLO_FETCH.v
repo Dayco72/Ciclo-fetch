@@ -1,16 +1,34 @@
 // Diego Jared Jimenez Silva
 // Gael Ramses Alvarado Lomelí
 
-//Modul
+// Modulo Ciclo fetch
 module CF(
-	input clk,
-	output reg [31:0] Inst
+    input clk,
+    output wire[31:0] Inst
 );
 
-wire [31:0] CRES,CIN;
+wire [31:0] CRES, CIN;
 
-ALU		ALUInst(.A(CIN),.RES(CRES));
-PC		PCInst(.IN(CRES),.clk(clk),.OUT(CIN));
-MEMI	MEMInst(.DR(CIN[),.INS(Inst));
+ALU     ALInst(.A(CIN), .RES(CRES));
+PC      PCInst(.IN(CRES), .CLK(clk), .OUT(CIN));
+MEMI    MEInst(.DR(CIN), .INS(Inst));
+endmodule
 
 // Testbench
+module CFTB();
+reg clk;
+wire [31:0] Inst;
+
+CF TBInst(.clk(clk), .Inst(Inst));
+
+// Reloj
+initial begin
+    clk = 0;
+    forever #100 clk = ~clk;
+end
+
+initial begin
+    #1000;
+    $stop;
+end
+endmodule

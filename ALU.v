@@ -6,10 +6,8 @@ module ALU(
     output reg [31:0] RES
 );
 
-//En esta ocasion solo sumaremos 4 cada vez, esto para guardar en multiplos de 4 en la memoria
+// En esta ocasión solo sumaremos 4 cada vez, esto para guardar en múltiplos de 4 en la memoria
 always @(*) begin
-        4'b0010: RES = A + 4'b0100;      // ADD
-        default: RES = 32'd0;
-    endcase
+    RES = A + 32'd4;	// Corregido: Sumar un valor constante de 32 bits
 end
 endmodule
